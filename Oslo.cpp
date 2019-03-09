@@ -26,13 +26,13 @@ void Oslo::DefaultSize(const int& size) { // Set the default Oslo size
 
 ////////////////////////////// Function that relaxes the system //////////////////////////////////
 bool Oslo::RelaxSystem() {
-    bool sOslo = true;
+    bool steady = true;
 
     for (int i = 0; i < size; i++){             // For all sites
         int pos = i;
 
-        if (slope[pos] > criti_slope[pos]) {    // If the site is not sOslo
-            sOslo = false;
+        if (slope[pos] > criti_slope[pos]) {    // If the site is not steady
+            steady = false;
             config[pos]--;                      // One grain at this site topples
             slope[pos]--;                       // The slope at this site decreases
             if (pos)                            // if this is not the first site
@@ -62,7 +62,7 @@ bool Oslo::RelaxSystem() {
             }
         }
     }
-    return sOslo;                              // Tell whether the system is sOslo
+    return steady;                              // Tell whether the system is steady
 }
 
 
